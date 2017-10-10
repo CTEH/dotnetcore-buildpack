@@ -43,9 +43,11 @@ PROJECT_NAME="NadekoBot"
 
 echo "restore ${PROJECT_FILE}"
 # dotnet restore $PROJECT_FILE --runtime linux-x64
+dotnet restore $PROJECT_FILE
 
 echo "publish ${PROJECT_FILE}"
 # dotnet publish $PROJECT_FILE --output ${BUILD_DIR}/heroku_output --configuration Release --runtime linux-x64
+dotnet publish $PROJECT_FILE --output ${BUILD_DIR}/heroku_output --configuration Release
 
 cat << EOT >> ${BUILD_DIR}/Procfile
 worker: dotnet "./heroku_output/${PROJECT_NAME}.dll"
